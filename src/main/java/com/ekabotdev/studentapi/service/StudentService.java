@@ -1,6 +1,7 @@
 package com.ekabotdev.studentapi.service;
 
 
+import com.ekabotdev.studentapi.customexception.StudentNotFoundException;
 import com.ekabotdev.studentapi.entity.Student;
 import com.ekabotdev.studentapi.repository.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,8 @@ public class StudentService {
     }
     public Student findStudentById(Long id) {
         return studentRepository.findById(id)
-                .orElse(null);
+                .orElseThrow(() -> new StudentNotFoundException(
+                        "Student with id " + id + " not found"));
     }
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
