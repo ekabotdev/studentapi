@@ -1,6 +1,7 @@
 package com.ekabotdev.studentapi.service;
 
 
+import com.ekabotdev.studentapi.customexception.EmailAlreadyExistsException;
 import com.ekabotdev.studentapi.customexception.StudentNotFoundException;
 import com.ekabotdev.studentapi.entity.Student;
 import com.ekabotdev.studentapi.repository.StudentRepository;
@@ -18,7 +19,7 @@ public class StudentService {
     }
     public Student creatStudent(Student student) {
         if (studentRepository.findByEmail(student.getEmail()).isPresent()) {
-            throw new RuntimeException("Email already exists");
+            throw new EmailAlreadyExistsException("Email already exists");
         }
         return studentRepository.save(student);
     }
