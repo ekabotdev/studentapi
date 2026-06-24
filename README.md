@@ -17,3 +17,14 @@ A RESTful API built using Spring Boot and MySQL for managing students.
 - Spring Data JPA
 - MySQL
 - Maven
+- ## API Endpoints
+
+POST /api/students
+
+GET /api/students
+
+GET /api/students/{id}
+
+PUT /api/students/{id}
+
+DELETE /api/students/{id}
