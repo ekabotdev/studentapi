@@ -30,10 +30,7 @@ public class StudentService {
 
         Student savedStudent = studentRepository.save(student);
         StudentResponse studentResponse = new StudentResponse();
-        studentResponse.setId(savedStudent.getId());
-        studentResponse.setEmail(savedStudent.getEmail());
-        studentResponse.setFirstName(savedStudent.getFirstName());
-        studentResponse.setLastName(savedStudent.getLastName());
+        mapToStudentResponse(savedStudent);
         return studentResponse;
     }
     public List<Student> getAllStudents() {
