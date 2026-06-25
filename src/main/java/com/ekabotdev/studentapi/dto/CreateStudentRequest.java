@@ -2,23 +2,15 @@ package com.ekabotdev.studentapi.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+@Getter
+@Setter
 
 public class CreateStudentRequest {
 
-    @Getter
-    @Setter
     private String firstName;
-    @Getter
-    @Setter
-    private String lastName;
-    @Getter
-    @Setter
-    private String email;
 
-    public CreateStudentRequest(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
+    private String lastName;
+
+    private String email;
 
 }
