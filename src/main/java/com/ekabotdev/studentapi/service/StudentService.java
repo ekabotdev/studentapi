@@ -47,4 +47,13 @@ public class StudentService {
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
+    private StudentResponse mapToStudentResponse(Student student) {
+        StudentResponse studentResponse = new StudentResponse();
+        studentResponse.setId(student.getId());
+        studentResponse.setEmail(student.getEmail());
+        studentResponse.setFirstName(student.getFirstName());
+        studentResponse.setLastName(student.getLastName());
+
+        return studentResponse;
+    }
 }
