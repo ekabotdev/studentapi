@@ -3,6 +3,8 @@ package com.ekabotdev.studentapi.service;
 
 import com.ekabotdev.studentapi.customexception.EmailAlreadyExistsException;
 import com.ekabotdev.studentapi.customexception.StudentNotFoundException;
+import com.ekabotdev.studentapi.dto.CreateStudentRequest;
+import com.ekabotdev.studentapi.dto.StudentResponse;
 import com.ekabotdev.studentapi.entity.Student;
 import com.ekabotdev.studentapi.repository.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -17,11 +19,22 @@ public class StudentService {
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
-    public Student creatStudent(Student student) {
-        if (studentRepository.findByEmail(student.getEmail()).isPresent()) {
+    public StudentResponse creatStudent(CreateStudentRequest request) {
+        if (studentRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new EmailAlreadyExistsException("Email already exists");
         }
-        return studentRepository.save(student);
+        Student student = new Student();
+        student.setEmail(request.getEmail());
+        student.setFirstName(request.getFirstName());
+        student.setLastName(request.getLastName());
+
+        Student savedStudent = studentRepository.save(student);
+        StudentResponse studentResponse = new StudentResponse();
+        studentResponse.setId(savedStudent.getId());
+        studentResponse.setEmail(savedStudent.getEmail());
+        studentResponse.setFirstName(savedStudent.getFirstName());
+        studentResponse.setLastName(savedStudent.getLastName());
+        return studentResponse;
     }
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
