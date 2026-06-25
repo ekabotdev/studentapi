@@ -19,15 +19,15 @@ public class StudentController {
     }
     @PostMapping
     public StudentResponse createStudent(@RequestBody CreateStudentRequest request) {
-        return studentService.creatStudent(request);
+        return studentService.createStudent(request);
     }
     @GetMapping
-    public List<Student> findAllStudents() {
+    public List<StudentResponse> findAllStudents() {
         return studentService.getAllStudents();
     }
     @GetMapping("/{id}")
-    public Student findStudentById(@PathVariable Long id) {
-        return studentService.findStudentById(id);
+    public StudentResponse findStudentById(@PathVariable Long id) {
+        return studentService.getStudentById(id);
     }
     @DeleteMapping("/{id}")
     public void deleteStudentById(@PathVariable Long id) {
