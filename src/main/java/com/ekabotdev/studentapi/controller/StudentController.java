@@ -1,5 +1,7 @@
 package com.ekabotdev.studentapi.controller;
 
+import com.ekabotdev.studentapi.dto.CreateStudentRequest;
+import com.ekabotdev.studentapi.dto.StudentResponse;
 import com.ekabotdev.studentapi.entity.Student;
 import com.ekabotdev.studentapi.service.StudentService;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +18,8 @@ public class StudentController {
         this.studentService = studentService;
     }
     @PostMapping
-    public Student createStudent(@RequestBody Student student) {
-        return studentService.creatStudent(student);
+    public StudentResponse createStudent(@RequestBody CreateStudentRequest request) {
+        return studentService.creatStudent(request);
     }
     @GetMapping
     public List<Student> findAllStudents() {
