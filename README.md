@@ -29,4 +29,3 @@ PUT /api/students/{id}
 
 DELETE /api/students/{id}
 
-![Register](images/CreateStudent.png)
